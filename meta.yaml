@@ -1,0 +1,46 @@
+{% set name = "readme-renderer" %}
+{% set version = "24.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/readme_renderer-{{ version }}.tar.gz"
+  sha256: "bb16f55b259f27f75f640acf5e00cf897845a8b3e4731b5c1a436e4b8529202f"
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - bleach >=2.1.0
+    - docutils >=0.13.1
+    - pip
+    - pygments
+    - python
+    - setuptools
+    - six
+  run:
+    - bleach >=2.1.0
+    - docutils >=0.13.1
+    - pygments
+    - python
+    - setuptools
+    - six
+
+test:
+  imports:
+    - readme-renderer
+    - readme-renderer.integration
+
+about:
+  home: https://github.com/pypa/readme_renderer
+  license: Apache Software
+  license_family: APACHE
+  summary: readme_renderer is a library for rendering "readme" descriptions for Warehouse
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
